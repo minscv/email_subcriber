@@ -6,11 +6,15 @@ async fn health_check() -> HttpResponse {
     HttpResponse::Ok().finish()
 }
 
-async fn subscribe() -> HttpResponse {
-    HttpResponse::Ok().finish()
+#[derive(serde::Deserialize)]
+struct FormData {
+    email: String,
+    name: String,
 }
 
-
+async fn subscribe(_form: web::Form<FormData>) -> HttpResponse {
+    HttpResponse::Ok().finish()
+}
 
 // Notice the different signature!
 // We return `Server` on the happy path and we dropped the `async` keyword
